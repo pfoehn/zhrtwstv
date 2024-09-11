@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+# Using SICF Service: /UI5/UI5_REPOSITORY_LOAD
+specVersion: "2.5"
+metadata:
+  name: ch.ethz.apps.sapui5.zhrtwstv.zhrtwstv
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: https://ethisflp-d.ethz.ch
+          client: "330"
+          auth: basic
+          credentials: env:UI5_USERNAME
+          password: env:UI5_PASSWORD          
+        app:
+          name: ZHRTWSTV
+          description: Stellvertretungen Skribble
+          package: ZHRTW_ETHZ
+          transport: S4DK948338
